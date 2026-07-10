@@ -1,0 +1,21 @@
+/* gift */
+/* spacing between groups now comes from .gift-group-title, not the list itself */
+.gift{display:flex;flex-direction:column;gap:16px;max-width:340px;margin:0 auto}
+.gift-group-title{font-family:'Jost';font-size:12px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--accent);text-align:center;margin:30px 0 14px}
+.gift-card,.gift-addr{border:1px solid var(--hair);border-radius:6px;padding:22px 20px;text-align:center;
+  background:linear-gradient(160deg,rgba(40,55,95,.35),rgba(15,29,56,.35))}
+.gift-bank{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;font-family:'Jost';
+  display:flex;align-items:center;justify-content:center;gap:10px}
+/* bank mark sits on its own white chip so the brand blue stays legible on the navy card */
+.gift-logo{flex:none;height:30px;width:auto;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+/* decorative mark beside a text label: transparent and already tinted to --accent, so no chip */
+.gift-icon{flex:none;height:26px;width:auto;opacity:.95}
+.gift-no{font-family:'Cormorant Garamond',serif;font-size:26px;letter-spacing:.06em;color:#fff}
+.gift-name{font-size:13px;color:var(--accent-soft);margin:4px 0 14px;font-family:'Cormorant Garamond',serif;font-style:italic}
+/* street address wraps across lines, so it is smaller than the single-line account numbers */
+.gift-addr-line{font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:.02em;color:#fff;line-height:1.55;max-width:262px;margin:0 auto}
+.copy-btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--accent);background:transparent;color:var(--accent);
+  font-family:'Jost';font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:9px 18px;border-radius:2px;cursor:pointer;transition:.3s}
+.copy-btn:hover,.copy-btn.done{background:var(--accent);color:var(--ink)}
+.copy-btn svg{width:13px;height:13px}

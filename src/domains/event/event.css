@@ -1,0 +1,18 @@
+.card{border:1px solid var(--hair);padding:38px 26px;max-width:360px;margin:26px auto 0;
+  background:linear-gradient(180deg,rgba(255,255,255,.04),transparent)}
+.card h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:28px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.card .when{font-family:'Cormorant Garamond',serif;font-size:23px;color:#fff;margin-top:14px}
+.card .time{font-size:14px;letter-spacing:.2em;color:var(--ivory-dim);margin-top:6px;text-transform:uppercase}
+.card .divider{height:1px;background:var(--hair);margin:20px auto;width:60%}
+.card .venue{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff}
+.card .addr{font-size:14px;letter-spacing:.08em;color:var(--ivory-dim);margin-top:6px;line-height:1.7}
+.map-btn{display:inline-flex;align-items:center;gap:8px;margin-top:22px;border:1px solid var(--accent);
+  color:var(--accent);text-decoration:none;font-size:12px;letter-spacing:.26em;text-transform:uppercase;
+  padding:11px 22px;transition:.4s}
+.map-btn:hover{background:var(--accent);color:var(--ink)}
+.map-btn svg{width:12px;height:12px}
+.card-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.card-actions .map-btn{margin-top:0}
+/* not scoped to .card-actions: .map-btn buttons also appear under the countdown */
+button.map-btn{background:transparent;cursor:pointer;font-family:'Jost'}

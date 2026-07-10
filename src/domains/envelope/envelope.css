@@ -1,0 +1,85 @@
+/* ---- ENVELOPE (page 1) ---- */
+.env-screen{position:fixed;inset:0;max-width:480px;margin:0 auto;z-index:150;background:radial-gradient(ellipse at 50% 34%,#101a33 0%,#070b18 48%,#020308 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;
+  transition:opacity 1s ease,transform 1s ease}
+.env-screen.gone{opacity:0;transform:scale(1.15);pointer-events:none}
+.galaxy{position:absolute;inset:0;overflow:hidden;z-index:0}
+.gx-swirl{position:absolute;left:50%;top:40%;width:200%;height:200%;transform:translate(-50%,-50%);border-radius:50%;
+  background:
+    conic-gradient(from 0deg at 50% 50%,rgba(120,150,225,.16),transparent 18%,rgba(160,120,205,.14) 38%,transparent 56%,rgba(120,150,225,.16) 76%,transparent 100%),
+    conic-gradient(from 120deg at 50% 50%,rgba(150,175,235,.1),transparent 22%,rgba(170,130,210,.09) 46%,transparent 70%);
+  filter:blur(8px);animation:gxSpin 120s linear infinite}
+@keyframes gxSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.gx-core{position:absolute;left:50%;top:40%;width:230px;height:110px;transform:translate(-50%,-50%) rotate(-18deg);
+  background:radial-gradient(ellipse at 50% 50%,rgba(255,248,225,.8) 0%,rgba(200,205,255,.4) 22%,rgba(140,160,230,.15) 46%,transparent 70%);
+  filter:blur(6px)}
+.gx-band{position:absolute;left:-25%;right:-25%;top:44%;height:34%;transform:rotate(-18deg);
+  background:radial-gradient(ellipse at 50% 50%,rgba(150,170,235,.2),transparent 72%);filter:blur(12px)}
+.gxstars i{position:absolute;border-radius:50%;background:#fff;animation:twinkle ease-in-out infinite}
+.env-stars{position:absolute;inset:0;overflow:hidden;perspective:600px;perspective-origin:50% 40%;z-index:1}
+.env-stars i{position:absolute;top:-8%;border-radius:50%;background:#fff;
+  box-shadow:0 0 6px 1px rgba(200,220,255,.9);animation:starFall3d linear infinite}
+@keyframes starFall3d{
+  0%{transform:translateY(-10vh) translateZ(-320px) rotate(8deg);opacity:0}
+  12%{opacity:1}
+  90%{opacity:.9}
+  100%{transform:translateY(118vh) translateZ(240px) rotate(8deg);opacity:0}}
+.scene,.env-tap{position:relative;z-index:2}
+/* above .scene: the longer caption reaches into the envelope's floral SVG,
+   whose leaves paint outside its box (overflow:visible) */
+.env-eyebrow{position:relative;z-index:3;text-shadow:0 1px 6px rgba(3,6,16,.85)}
+@media(prefers-reduced-motion:reduce){.env-stars i{animation:none}}
+.env-eyebrow{font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--accent);text-align:center}
+/* the 30-character caption needs tighter tracking to stay on one line on small phones */
+@media(max-width:374px){.env-eyebrow{font-size:9.5px;letter-spacing:.28em}}
+.env-eyebrow b{display:block;font-family:'Great Vibes',cursive;font-size:46px;letter-spacing:0;color:#fff;text-transform:none;margin-top:8px;font-weight:400}
+.scene{perspective:1400px;width:300px;height:210px;cursor:pointer}
+.envelope{position:relative;width:300px;height:210px;transform-style:preserve-3d;
+  animation:envFloat 5s ease-in-out infinite}
+@keyframes envFloat{0%,100%{transform:translateY(0) rotateX(6deg) rotateY(-6deg)}50%{transform:translateY(-14px) rotateX(6deg) rotateY(6deg)}}
+.env-screen.opening .envelope{animation:none;transform:translateY(-6px) rotateX(4deg)}
+.env-base{position:absolute;inset:0;border-radius:7px;
+  background:var(--paper),linear-gradient(150deg,#25406e 0%,#182c4e 55%,#0f1d38 100%);
+  background-blend-mode:overlay,normal;
+  box-shadow:0 34px 70px rgba(0,0,0,.66),inset 0 1px 0 rgba(220,190,120,.4),inset 0 -12px 26px rgba(0,0,0,.3);border:1px solid rgba(226,198,120,.55)}
+.env-base::after{content:"";position:absolute;inset:0;border-radius:7px;pointer-events:none;
+  background:linear-gradient(150deg,rgba(120,150,210,.35),transparent 42%)}
+.env-pocket{position:absolute;inset:0;border-radius:7px;z-index:3;background:linear-gradient(150deg,#fdf6e3 0%,#e9d290 45%,#c9a94f 100%);
+  clip-path:polygon(0 30%,50% 66%,100% 30%,100% 100%,0 100%)}
+.env-pocket .fill{position:absolute;inset:1.6px;background:var(--paper),linear-gradient(150deg,#20375f 0%,#152744 60%,#0d1a33 100%);background-blend-mode:overlay,normal;
+  clip-path:polygon(0 30%,50% 66%,100% 30%,100% 100%,0 100%);box-shadow:inset 0 4px 10px rgba(0,0,0,.35)}
+.env-pocket::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:linear-gradient(178deg,rgba(0,0,0,.4),transparent 16%);
+  clip-path:polygon(0 30%,50% 66%,100% 30%,50% 72%)}
+.env-letter{position:absolute;left:14px;right:14px;top:16px;bottom:16px;background:linear-gradient(180deg,#fffef9,#f6f0e6);
+  border-radius:3px;z-index:2;box-shadow:0 6px 16px rgba(0,0,0,.16);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  transition:transform 1s cubic-bezier(.6,0,.2,1) .55s;transform:translateY(0)}
+.env-letter .mono{font-family:'Great Vibes',cursive;font-size:42px;color:#3a3a3a;line-height:1}
+.env-letter .sub{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#9a8f7d}
+.env-screen.opening .env-letter{transform:translateY(-124px)}
+.env-flap{position:absolute;left:0;top:0;width:300px;height:120px;background:linear-gradient(150deg,#fdf6e3 0%,#e9d290 45%,#c9a94f 100%);
+  clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;
+  transition:transform .85s ease;z-index:5;backface-visibility:hidden;
+  filter:drop-shadow(0 4px 5px rgba(0,0,0,.4))}
+.env-flap .fill{position:absolute;left:0;top:0;width:100%;height:100%;background:var(--paper),linear-gradient(160deg,#2a4676 0%,#1b3054 58%,#122240 100%);background-blend-mode:overlay,normal;
+  clip-path:polygon(0.8% 1.4%,99.2% 1.4%,50% 97%)}
+.env-flap::after{content:"";position:absolute;inset:0;clip-path:polygon(0 0,100% 0,50% 100%);pointer-events:none;z-index:2;
+  background:linear-gradient(160deg,rgba(160,190,235,.3),transparent 34%,rgba(0,0,0,.18) 100%)}
+.env-screen.opening .env-flap{transform:rotateX(180deg);z-index:1}
+.env-deco{position:absolute;left:-34px;right:-34px;top:-30px;bottom:-30px;width:auto;height:auto;z-index:7;pointer-events:none;overflow:visible}
+.env-seal{position:absolute;left:50%;top:60px;width:52px;height:52px;margin-left:-26px;border-radius:50%;z-index:6;
+  background:radial-gradient(circle at 38% 30%,#fbf0c4 0%,#e6c877 40%,#c69f45 76%,#9c7a2e 100%);
+  box-shadow:0 5px 12px rgba(0,0,0,.5),inset 0 2px 4px rgba(255,255,255,.45),inset 0 -5px 9px rgba(0,0,0,.4);
+  display:flex;align-items:center;justify-content:center;
+  color:#5a4410;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:17px;
+  text-shadow:0 1px 1px rgba(255,255,255,.4),0 -1px 1px rgba(0,0,0,.2);transition:opacity .3s}
+.env-seal::before{content:"";position:absolute;inset:4px;border-radius:50%;border:1px solid rgba(255,255,255,.16)}
+.env-seal::after{content:"";position:absolute;left:15%;top:12%;width:34%;height:26%;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.55),transparent 70%)}
+.env-screen.opening .env-seal{opacity:0}
+.env-tap{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-soft);
+  animation:tapPulse 2s ease-in-out infinite}
+.env-screen.opening .env-tap{opacity:0;transition:opacity .3s}
+@keyframes tapPulse{0%,100%{opacity:.4}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.envelope{animation:none}}

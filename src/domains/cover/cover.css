@@ -1,0 +1,90 @@
+/* ---- COVER ---- */
+.cover{position:relative;width:100%;height:100vh;max-width:480px;margin:0 auto;z-index:1;
+  background:var(--ink);display:flex;flex-direction:column;overflow:hidden}
+/* bottom transition into the next section; also the only thing keeping the lower
+   text legible where it crosses the bride's white gown */
+.cover::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(7,11,24,.62) 46%,#070b18 92%)}
+/* shown at full brightness: no dimming filter, no veil over the artwork */
+.cover-photo{position:absolute;inset:0;
+  background-image:url('/assets/cover.jpg');
+  /* centered: the couple sits left and the starfield right, under the right-aligned text */
+  background-size:cover;background-position:50% 50%}
+/* neon bloom: black everywhere except the signs, so `screen` only ever adds light.
+   Sizing must match .cover-photo exactly or the glow drifts off the signs. */
+.cover-neon{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background-image:url('/assets/cover-neon.png');
+  background-size:cover;background-position:50% 50%;
+  mix-blend-mode:screen;animation:neonFlicker 6s ease-in-out infinite}
+@keyframes neonFlicker{
+  0%,100%{opacity:.88}
+  8%{opacity:1}9.5%{opacity:.7}11%{opacity:1}
+  44%{opacity:.95}46%{opacity:.78}48%{opacity:1}
+  72%{opacity:.9}}
+@media(prefers-reduced-motion:reduce){.cover-neon{animation:none;opacity:.92}}
+/* ---- fireflies circling the couple ----
+   min-width/min-height:100% + the artwork's aspect-ratio reproduces the exact box
+   that background-size:cover produces, so the % positions below track the couple
+   no matter how the viewport crops the image. */
+.fireflies{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  aspect-ratio:900/1537;min-width:100%;min-height:100%;
+  container-type:size;z-index:3;pointer-events:none;overflow:hidden}
+/* hair (28%) -> hem (92%); the wrapper's scale widens the orbit as the gown flares */
+.ff{position:absolute;width:0;height:0;animation:ffDescend linear infinite}
+@keyframes ffDescend{
+  0%{top:28%;transform:scale(.5);opacity:0}
+  10%{opacity:1}
+  86%{opacity:1}
+  100%{top:92%;transform:scale(1.35);opacity:0}}
+/* bright warm core + wide halo: has to stay visible against the white gown too */
+.ff i{position:absolute;display:block;border-radius:50%;
+  background:radial-gradient(circle,#fffdf2 0%,#ffe08a 45%,rgba(255,176,52,0) 74%);
+  box-shadow:0 0 6px 2px rgba(255,224,138,.95),0 0 16px 6px rgba(255,190,80,.6),
+             0 0 30px 12px rgba(255,170,50,.28);
+  animation:ffOrbit linear infinite,ffBlink ease-in-out infinite}
+@keyframes ffOrbit{
+  from{transform:rotate(0deg) translateX(var(--r)) rotate(0deg)}
+  to{transform:rotate(360deg) translateX(var(--r)) rotate(-360deg)}}
+@keyframes ffBlink{0%,100%{opacity:.4}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.fireflies{display:none}}
+
+/* ---- animated luxury motif ---- */
+.motif{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.aura{position:absolute;top:38%;left:50%;width:150%;height:150%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.12),rgba(255,255,255,.04) 34%,transparent 60%);
+  animation:auraPulse 9s ease-in-out infinite}
+@keyframes auraPulse{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:.9;transform:translate(-50%,-50%) scale(1.12)}}
+.shimmer{position:absolute;inset:-40%;
+  background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.16) 50%,transparent 58%);
+  animation:sweep 8.5s ease-in-out infinite}
+@keyframes sweep{0%{transform:translateX(-70%)}55%,100%{transform:translateX(70%)}}
+.particles{position:absolute;inset:0}
+.particles i{position:absolute;bottom:-12px;border-radius:50%;background:#fff;
+  box-shadow:0 0 6px rgba(255,255,255,.8);opacity:0;animation:rise linear infinite}
+@keyframes rise{
+  0%{transform:translateY(0) scale(.6);opacity:0}
+  12%{opacity:.9}
+  70%{opacity:.7}
+  100%{transform:translateY(-102vh) scale(1);opacity:0}}
+@media(prefers-reduced-motion:reduce){.aura,.shimmer,.particles i{animation:none}.shimmer{opacity:0}}
+.cover-inner{position:relative;z-index:3;flex:1;display:flex;flex-direction:column;
+  align-items:flex-end;justify-content:space-between;padding:58px 34px 54px;text-align:right}
+.eyebrow{font-size:13px;letter-spacing:.42em;text-transform:uppercase;color:#fff;font-weight:400}
+.cover-names{font-family:'Great Vibes',cursive;color:#ffffff;
+  font-size:84px;line-height:.9;margin:10px 0;text-shadow:0 1px 14px rgba(0,0,0,.55);text-align:right}
+.cover-amp{display:block;font-size:40px;color:#ffffff;margin:2px 0;font-family:'Great Vibes',cursive}
+.cover-bottom{display:flex;flex-direction:column;align-items:flex-end;gap:20px;width:100%}
+/* the veil is gone, so the lower text can land on the bride's white gown:
+   carry the contrast on the glyphs instead of dimming the artwork */
+.cover-date,.to-line,.guest,.scroll-cue span{
+  text-shadow:0 1px 10px rgba(0,0,0,.9),0 0 4px rgba(0,0,0,.75)}
+.eyebrow{text-shadow:0 1px 10px rgba(0,0,0,.75)}
+.cover-date{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:.26em;font-size:17px;color:#fff}
+.to-line{font-size:13px;letter-spacing:.22em;color:var(--ivory-dim);text-transform:uppercase}
+.guest{font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;
+  border-bottom:1px solid var(--hair);padding-bottom:4px;display:inline-block}
+.scroll-cue{margin-top:6px;display:flex;flex-direction:column;align-items:flex-end;gap:6px;color:#fff}
+.scroll-cue span{font-size:11px;letter-spacing:.28em;text-transform:uppercase;opacity:.85}
+.scroll-cue svg{width:20px;height:20px;animation:cueBounce 1.8s ease-in-out infinite}
+@keyframes cueBounce{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(7px);opacity:1}}
+@media(prefers-reduced-motion:reduce){.scroll-cue svg{animation:none}}

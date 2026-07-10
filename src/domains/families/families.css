@@ -1,0 +1,4 @@
+/* turut mengundang */
+.invite-list{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:360px;margin:26px auto 0}
+.invite-list span{border:1px solid var(--hair);border-radius:20px;padding:9px 16px;font-size:13px;
+  color:var(--accent-soft);font-family:'Cormorant Garamond',serif}

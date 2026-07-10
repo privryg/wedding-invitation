@@ -1,0 +1,11 @@
+/* wishes */
+.wish-box{border:1px solid var(--hair);padding:26px 22px;max-width:360px;margin:24px auto 18px;text-align:left;
+  background:linear-gradient(160deg,rgba(40,55,95,.3),rgba(15,29,56,.3));border-radius:6px}
+.wish-box textarea{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--hair);color:#fff;
+  font-family:'Cormorant Garamond',serif;font-size:16px;padding:12px 14px;border-radius:4px;resize:vertical;min-height:78px}
+.wish-box input{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--hair);color:#fff;
+  font-family:'Cormorant Garamond',serif;font-size:16px;padding:11px 14px;border-radius:4px;margin-bottom:10px}
+.wishes{max-width:360px;margin:0 auto;text-align:left;max-height:300px;overflow-y:auto;padding-right:4px}
+.wish{border-bottom:1px solid var(--hair);padding:14px 2px}
+.wish-name{font-family:'Jost';font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.wish-msg{font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.6;color:var(--accent-soft);margin-top:4px}

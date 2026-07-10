@@ -1,0 +1,21 @@
+/* ---- RSVP ---- */
+.rsvp-box{border:1px solid var(--hair);padding:34px 24px;max-width:360px;margin:26px auto 0;text-align:left;
+  background:linear-gradient(180deg,rgba(255,255,255,.04),transparent)}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.field input,.field select{width:100%;background:rgba(0,0,0,.35);border:1px solid var(--hair);color:#fff;
+  font-family:'Cormorant Garamond',serif;font-size:20px;padding:11px 13px;outline:none;border-radius:1px}
+.field input:focus,.field select:focus{border-color:#fff}
+.attend{display:flex;gap:10px}
+.attend button{flex:1;background:rgba(0,0,0,.3);border:1px solid var(--hair);color:var(--ivory-dim);
+  font-family:'Jost';font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:12px 0;cursor:pointer;transition:.3s}
+.attend button.sel{background:#fff;color:var(--ink);border-color:#fff}
+.send-btn{width:100%;margin-top:6px;background:transparent;border:1px solid var(--accent);color:var(--accent);
+  font-family:'Jost';font-size:13px;letter-spacing:.26em;text-transform:uppercase;padding:14px 0;cursor:pointer;
+  transition:.4s;display:flex;align-items:center;justify-content:center;gap:9px}
+.send-btn:hover{background:var(--accent);color:var(--ink)}
+.send-btn svg{width:14px;height:14px}
+.rsvp-note{font-size:13px;color:var(--accent-soft);margin-top:14px;line-height:1.7;font-family:'Cormorant Garamond',serif;font-style:italic;text-align:center}
+.rsvp-err{color:#e2a3a3;font-size:12px;margin-top:8px;letter-spacing:.02em;font-family:'Jost',sans-serif}
+.field input.err{border-color:#c98a8a}
+.send-btn.off{opacity:.5}

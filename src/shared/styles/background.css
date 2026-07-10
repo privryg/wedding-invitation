@@ -1,0 +1,59 @@
+/* ---- cosmic background (content pages) ---- */
+.bg-motif{position:fixed;inset:0;max-width:480px;margin:0 auto;left:0;right:0;z-index:0;pointer-events:none;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 12%,#0d1730 0%,#070b18 45%,#030409 100%)}
+.nebula{position:absolute;border-radius:50%;filter:blur(30px);opacity:.4;animation:drift 26s ease-in-out infinite}
+.nebula.a{width:70%;height:34%;left:8%;top:14%;background:radial-gradient(circle,rgba(90,120,190,.5),transparent 65%)}
+.nebula.b{width:60%;height:30%;right:6%;top:58%;background:radial-gradient(circle,rgba(150,120,180,.4),transparent 65%);animation-duration:34s;animation-direction:reverse}
+@keyframes drift{0%{transform:translate(-8%,-4%)}50%{transform:translate(10%,16%)}100%{transform:translate(-8%,-4%)}}
+.stars i{position:absolute;border-radius:50%;background:#fff;animation:twinkle ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
+.planet{position:absolute;border-radius:50%}
+.planet .ring{position:absolute;inset:-34% -14%;border:1px solid rgba(210,220,240,.22);border-radius:50%;transform:rotate(-22deg);z-index:3}
+.planet .surface{position:absolute;inset:0;border-radius:50%;overflow:hidden;z-index:1}
+.planet .surface::before{content:"";position:absolute;top:0;left:0;height:100%;width:200%;
+  animation:bandScroll linear infinite}
+@keyframes bandScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* sphere shading (light + terminator) on top */
+.planet::after{content:"";position:absolute;inset:0;border-radius:50%;z-index:2;pointer-events:none;
+  background:radial-gradient(circle at 30% 26%,rgba(255,255,255,.5),rgba(255,255,255,0) 42%),
+             radial-gradient(circle at 74% 82%,rgba(0,0,10,.6),rgba(0,0,10,0) 60%);
+  box-shadow:inset -3px -4px 8px rgba(0,0,20,.45),inset 3px 3px 7px rgba(255,255,255,.15)}
+.planet.p1{width:66px;height:66px;left:12%;top:24%;box-shadow:0 0 26px rgba(120,150,210,.4);animation:floatP 24s ease-in-out infinite}
+.planet.p1 .surface::before{background:
+  repeating-linear-gradient(82deg,#2f4a78 0,#3f5f92 4%,#6f8bc0 8%,#3f5f92 12%,#28406c 16%),
+  radial-gradient(circle at 30% 60%,#d6e4ff 0,transparent 8%),
+  radial-gradient(circle at 65% 35%,#bcd0f5 0,transparent 7%);
+  background-color:#35507f}
+.planet.p1 .surface::before{animation-duration:26s}
+.planet.p2{width:40px;height:40px;right:15%;top:44%;box-shadow:0 0 20px rgba(210,170,120,.4);animation:floatP 30s ease-in-out infinite reverse}
+.planet.p2 .surface::before{background:
+  repeating-linear-gradient(88deg,#b98a5c 0,#d9b483 3%,#efd6ac 6%,#cf9f6f 9%,#a9743f 13%,#d9b483 17%),
+  radial-gradient(circle at 62% 58%,#b45a44 0,#8f3f30 3%,transparent 6%);
+  background-color:#c49a6b}
+.planet.p2 .surface::before{animation-duration:16s;animation-direction:reverse}
+.planet.p3{width:24px;height:24px;left:22%;top:70%;box-shadow:0 0 16px rgba(150,200,170,.4);animation:floatP 22s ease-in-out infinite}
+.planet.p3 .surface::before{background:
+  repeating-linear-gradient(80deg,#4d7a5a 0,#6f9e72 5%,#3f6349 10%,#8fb98a 15%),
+  radial-gradient(circle at 40% 55%,#3a5f7a 0,transparent 9%),
+  radial-gradient(circle at 70% 40%,#3a5f7a 0,transparent 7%);
+  background-color:#5c8763}
+.planet.p3 .surface::before{animation-duration:13s}
+@keyframes floatP{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.satellite{position:absolute;top:10%;left:-16%;width:120px;height:2px;opacity:.9;
+  animation:satMove 42s linear infinite}
+.satellite .trail{position:absolute;right:10px;top:0;width:80px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,rgba(180,205,255,.6))}
+.satellite .body{position:absolute;right:-2px;top:-7px;color:#dfe8ff;filter:drop-shadow(0 0 6px rgba(160,195,255,.9))}
+.satellite .body svg{width:17px;height:17px}
+@keyframes satMove{0%{transform:translate(0,0) rotate(18deg)}50%{transform:translate(64vw,22vh) rotate(18deg)}100%{transform:translate(130vw,44vh) rotate(18deg)}}
+/* shooting stars */
+.shooting{position:absolute;inset:0;overflow:hidden}
+.shoot{position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;opacity:0;
+  box-shadow:0 0 6px 1px rgba(255,255,255,.95)}
+.shoot::before{content:"";position:absolute;right:3px;top:1px;width:90px;height:1.5px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,rgba(200,220,255,.9))}
+.shoot.go{animation:shoot 1.2s ease-in forwards}
+@keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(45deg)}
+  10%{opacity:1}100%{opacity:0;transform:translate(52vw,70vh) rotate(45deg)}}
+#content{position:relative;z-index:1}
+@media(prefers-reduced-motion:reduce){.nebula,.stars i,.planet,.satellite,.shoot,.planet::after{animation:none}}

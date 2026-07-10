@@ -1,0 +1,7 @@
+.cd{display:flex;justify-content:center;gap:9px;margin-top:30px}
+.cd .box{border:1px solid var(--hair);padding:16px 0;width:80px;background:rgba(255,255,255,.03)}
+.cd .num{font-family:'Cormorant Garamond',serif;font-size:39px;color:#fff;line-height:1}
+.cd .lab{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-soft);margin-top:8px}
+/* "Simpan ke Kalender" sits under the countdown boxes */
+.cd-actions{display:flex;justify-content:center;margin-top:28px}
+.cd-actions .map-btn{margin-top:0}
