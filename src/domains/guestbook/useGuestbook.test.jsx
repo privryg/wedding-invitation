@@ -96,7 +96,7 @@ describe('useGuestbook', () => {
     expect(result.current.wishes.map((w) => w.id)).toEqual(['b', 'a'])
   })
 
-  it('keeps a wish saved during the initial fetch when the fetch rejects', async () => {
+  it('retains wishes added while the initial fetch is pending when that fetch rejects', async () => {
     const { promise, reject } = deferred()
     fetchWishes.mockReturnValue(promise)
     insertWish.mockResolvedValue({ id: 'b', name: 'Sri', message: 'bahagia' })
