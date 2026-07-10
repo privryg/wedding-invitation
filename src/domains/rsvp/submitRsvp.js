@@ -1,11 +1,9 @@
-import { formatRsvpMessage } from './rsvp.js'
-import { sendTelegramMessage } from '../../infrastructure/telegram/telegramNotifier.js'
+import { notifyRsvp } from '../../infrastructure/supabase/rsvpNotifier.js'
 
 /**
  * Application use case: deliver an RSVP to the couple.
- * Returns { ok: boolean }; throws on network failure (caller handles it).
+ * Returns { ok: boolean }; never throws.
  */
 export async function submitRsvp(rsvp) {
-  const data = await sendTelegramMessage(formatRsvpMessage(rsvp))
-  return { ok: !!(data && data.ok) }
+  return notifyRsvp(rsvp)
 }

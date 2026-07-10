@@ -1,6 +1,7 @@
 /**
- * RSVP domain: the attendance-confirmation value object plus its validation and
- * message formatting rules. No framework or transport concerns here.
+ * RSVP domain: the attendance-confirmation value object plus its validation
+ * rules. No framework or transport concerns here, and no message formatting —
+ * that happens server-side, in the notify-rsvp Edge Function.
  */
 
 export const ATTENDANCE = {
@@ -22,25 +23,7 @@ export function isValidWhatsapp(value) {
   return digits.length >= 9 && digits.length <= 15
 }
 
-/** Normalize to E.164-ish: a leading 0 becomes Indonesia's 62 country code. */
-export function normalizeWhatsapp(value) {
-  let digits = value.replace(/\D/g, '')
-  if (digits.startsWith('0')) digits = '62' + digits.slice(1)
-  return '+' + digits
-}
-
 /** Both fields must pass before the guest can confirm. */
 export function isValidRsvp({ name, whatsapp }) {
   return isValidName(name) && isValidWhatsapp(whatsapp)
-}
-
-/** Formats the Telegram message body sent to the couple. */
-export function formatRsvpMessage({ name, whatsapp, attendance, guestCount }) {
-  return (
-    'Konfirmasi Kehadiran - Wedding Ryan & Eci\n' +
-    'Nama: ' + name + '\n' +
-    'WhatsApp: ' + normalizeWhatsapp(whatsapp) + '\n' +
-    'Kehadiran: ' + attendance + '\n' +
-    'Jumlah tamu: ' + guestCount + ' orang'
-  )
 }
