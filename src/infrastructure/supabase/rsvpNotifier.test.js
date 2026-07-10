@@ -12,7 +12,7 @@ describe('notifyRsvp', () => {
   it('resolves ok: true when the function reports success', async () => {
     invoke.mockResolvedValue({ data: { ok: true }, error: null })
 
-    const result = await notifyRsvp({ name: 'Sri', whatsapp: '0812', attendance: 'yes', guestCount: 2 })
+    const result = await notifyRsvp({ name: 'Sri', whatsapp: '081234567890', attendance: 'Hadir', guestCount: '2' })
 
     expect(result).toEqual({ ok: true })
   })
@@ -20,7 +20,7 @@ describe('notifyRsvp', () => {
   it('resolves ok: false when invoke reports a transport/function error', async () => {
     invoke.mockResolvedValue({ data: null, error: { message: 'invalid rsvp' } })
 
-    const result = await notifyRsvp({ name: 'Sri', whatsapp: '0812', attendance: 'yes', guestCount: 2 })
+    const result = await notifyRsvp({ name: 'Sri', whatsapp: '081234567890', attendance: 'Hadir', guestCount: '2' })
 
     expect(result).toEqual({ ok: false })
   })
@@ -28,7 +28,7 @@ describe('notifyRsvp', () => {
   it('resolves ok: false when the function body itself reports ok: false', async () => {
     invoke.mockResolvedValue({ data: { ok: false }, error: null })
 
-    const result = await notifyRsvp({ name: 'Sri', whatsapp: '0812', attendance: 'yes', guestCount: 2 })
+    const result = await notifyRsvp({ name: 'Sri', whatsapp: '081234567890', attendance: 'Hadir', guestCount: '2' })
 
     expect(result).toEqual({ ok: false })
   })
@@ -37,17 +37,17 @@ describe('notifyRsvp', () => {
     invoke.mockResolvedValue({ data: 'some string', error: null })
 
     await expect(
-      notifyRsvp({ name: 'Sri', whatsapp: '0812', attendance: 'yes', guestCount: 2 })
+      notifyRsvp({ name: 'Sri', whatsapp: '081234567890', attendance: 'Hadir', guestCount: '2' })
     ).resolves.toEqual({ ok: false })
   })
 
   it('invokes notify-rsvp with exactly the rsvp fields as the body', async () => {
     invoke.mockResolvedValue({ data: { ok: true }, error: null })
 
-    await notifyRsvp({ name: 'Sri', whatsapp: '0812', attendance: 'yes', guestCount: 2 })
+    await notifyRsvp({ name: 'Sri', whatsapp: '081234567890', attendance: 'Hadir', guestCount: '2' })
 
     expect(invoke).toHaveBeenCalledWith('notify-rsvp', {
-      body: { name: 'Sri', whatsapp: '0812', attendance: 'yes', guestCount: 2 },
+      body: { name: 'Sri', whatsapp: '081234567890', attendance: 'Hadir', guestCount: '2' },
     })
   })
 })
