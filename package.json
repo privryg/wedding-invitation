@@ -6,7 +6,7 @@
   "description": "The Wedding of Ryan & Eci — React migration (Domain-Driven Design)",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "rm -rf assets && vite build",
     "preview": "vite preview --port 6969",
     "test": "vitest run",
     "test:watch": "vitest"
