@@ -68,11 +68,13 @@ export default function WishesSection() {
           )}
         </div>
         <div className="wishes">
-          {status === 'loading' && <div className="wish-msg">Memuat ucapan...</div>}
-          {status === 'error' && (
+          {status === 'loading' && wishes.length === 0 && (
+            <div className="wish-msg">Memuat ucapan...</div>
+          )}
+          {status === 'error' && wishes.length === 0 && (
             <div className="wish-msg">Ucapan tidak dapat dimuat saat ini.</div>
           )}
-          {status === 'ready' &&
+          {wishes.length > 0 &&
             wishes.map((w) => (
               <div className="wish" key={w.id}>
                 <div className="wish-name">{w.name}</div>

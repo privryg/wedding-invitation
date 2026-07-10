@@ -13,6 +13,16 @@ const { useGuestbook } = await import('./useGuestbook.js')
 
 beforeEach(() => vi.clearAllMocks())
 
+function deferred() {
+  let resolve
+  let reject
+  const promise = new Promise((res, rej) => {
+    resolve = res
+    reject = rej
+  })
+  return { promise, resolve, reject }
+}
+
 describe('useGuestbook', () => {
   it('loads wishes and reports ready', async () => {
     fetchWishes.mockResolvedValue([{ id: 'a', name: 'Rina', message: 'selamat' }])
@@ -60,5 +70,54 @@ describe('useGuestbook', () => {
 
     expect(outcome).toEqual({ ok: false })
     expect(result.current.wishes.map((w) => w.id)).toEqual(['a'])
+  })
+
+  it('keeps a wish saved during the initial fetch ahead of the resolved list', async () => {
+    const { promise, resolve } = deferred()
+    fetchWishes.mockReturnValue(promise)
+    insertWish.mockResolvedValue({ id: 'b', name: 'Sri', message: 'bahagia' })
+
+    const { result } = renderHook(() => useGuestbook())
+    expect(result.current.status).toBe('loading')
+
+    let outcome
+    await act(async () => {
+      outcome = await result.current.addWish('Sri', 'bahagia')
+    })
+    expect(outcome).toEqual({ ok: true })
+    expect(result.current.wishes.map((w) => w.id)).toEqual(['b'])
+
+    await act(async () => {
+      resolve([{ id: 'a', name: 'Rina', message: 'selamat' }])
+      await promise
+    })
+
+    await waitFor(() => expect(result.current.status).toBe('ready'))
+    expect(result.current.wishes.map((w) => w.id)).toEqual(['b', 'a'])
+  })
+
+  it('keeps a wish saved during the initial fetch when the fetch rejects', async () => {
+    const { promise, reject } = deferred()
+    fetchWishes.mockReturnValue(promise)
+    insertWish.mockResolvedValue({ id: 'b', name: 'Sri', message: 'bahagia' })
+    promise.catch(() => {})
+
+    const { result } = renderHook(() => useGuestbook())
+    expect(result.current.status).toBe('loading')
+
+    let outcome
+    await act(async () => {
+      outcome = await result.current.addWish('Sri', 'bahagia')
+    })
+    expect(outcome).toEqual({ ok: true })
+    expect(result.current.wishes.map((w) => w.id)).toEqual(['b'])
+
+    await act(async () => {
+      reject(new Error('offline'))
+      await promise.catch(() => {})
+    })
+
+    await waitFor(() => expect(result.current.status).toBe('error'))
+    expect(result.current.wishes.map((w) => w.id)).toEqual(['b'])
   })
 })

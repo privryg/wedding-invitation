@@ -16,7 +16,11 @@ export function useGuestbook() {
     fetchWishes()
       .then((loaded) => {
         if (cancelled) return
-        setWishes(loaded)
+        setWishes((prev) => {
+          const loadedIds = new Set(loaded.map((w) => w.id))
+          const addedSinceFetchStarted = prev.filter((w) => !loadedIds.has(w.id))
+          return [...addedSinceFetchStarted, ...loaded]
+        })
         setStatus('ready')
       })
       .catch(() => {
