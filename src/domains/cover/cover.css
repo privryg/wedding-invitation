@@ -1,5 +1,6 @@
-/* ---- COVER ---- */
-.cover{position:relative;width:100%;height:100vh;max-width:480px;margin:0 auto;z-index:1;
+/* ---- COVER ----
+   sticky: page 3 slides up over the cover as the guest scrolls (page 2 -> 3) */
+.cover{position:sticky;top:0;width:100%;height:100vh;max-width:480px;margin:0 auto;z-index:1;
   background:var(--ink);display:flex;flex-direction:column;overflow:hidden}
 /* bottom transition into the next section; also the only thing keeping the lower
    text legible where it crosses the bride's white gown */
@@ -8,35 +9,37 @@
 /* shown at full brightness: no dimming filter, no veil over the artwork */
 .cover-photo{position:absolute;inset:0;
   background-image:url('/assets/cover.jpg');
-  /* centered: the couple sits left and the starfield right, under the right-aligned text */
   background-size:cover;background-position:50% 50%}
-/* neon bloom: black everywhere except the signs, so `screen` only ever adds light.
-   Sizing must match .cover-photo exactly or the glow drifts off the signs. */
-.cover-neon{position:absolute;inset:0;z-index:1;pointer-events:none;
-  background-image:url('/assets/cover-neon.png');
-  background-size:cover;background-position:50% 50%;
-  mix-blend-mode:screen;animation:neonFlicker 6s ease-in-out infinite}
-@keyframes neonFlicker{
-  0%,100%{opacity:.88}
-  8%{opacity:1}9.5%{opacity:.7}11%{opacity:1}
-  44%{opacity:.95}46%{opacity:.78}48%{opacity:1}
-  72%{opacity:.9}}
-@media(prefers-reduced-motion:reduce){.cover-neon{animation:none;opacity:.92}}
-/* ---- fireflies circling the couple ----
+/* ---- fireflies drifting through the night garden ----
    min-width/min-height:100% + the artwork's aspect-ratio reproduces the exact box
-   that background-size:cover produces, so the % positions below track the couple
-   no matter how the viewport crops the image. */
+   that background-size:cover produces, so the % positions below track the artwork
+   no matter how the viewport crops it. */
 .fireflies{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  aspect-ratio:900/1537;min-width:100%;min-height:100%;
+  aspect-ratio:930/1388;min-width:100%;min-height:100%;
   container-type:size;z-index:3;pointer-events:none;overflow:hidden}
-/* hair (28%) -> hem (92%); the wrapper's scale widens the orbit as the gown flares */
+/* they fall through the open sky and settle over the mountains */
 .ff{position:absolute;width:0;height:0;animation:ffDescend linear infinite}
 @keyframes ffDescend{
-  0%{top:28%;transform:scale(.5);opacity:0}
+  0%{top:22%;transform:scale(.5);opacity:0}
   10%{opacity:1}
   86%{opacity:1}
-  100%{top:92%;transform:scale(1.35);opacity:0}}
-/* bright warm core + wide halo: has to stay visible against the white gown too */
+  100%{top:88%;transform:scale(1.35);opacity:0}}
+/* ---- flock of birds crossing the sky ----
+   same cover-box registration as .fireflies, so `top` stays clear of the mountains */
+.birds{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  aspect-ratio:930/1388;min-width:100%;min-height:100%;
+  container-type:size;z-index:2;pointer-events:none;overflow:hidden}
+.bird{position:absolute;left:0;color:#080d1a;animation:birdFlyR linear infinite}
+.bird.rtl{animation-name:birdFlyL}
+.bird i{display:block;animation:birdFlap ease-in-out infinite}
+.bird svg{display:block;width:100%;height:auto}
+@keyframes birdFlyR{from{transform:translateX(-15cqw)}to{transform:translateX(115cqw)}}
+@keyframes birdFlyL{from{transform:translateX(115cqw)}to{transform:translateX(-15cqw)}}
+/* wings beat by squashing the gull shape vertically */
+@keyframes birdFlap{0%,100%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-1px) scaleY(.35)}}
+@media(prefers-reduced-motion:reduce){.birds{display:none}}
+
+/* bright warm core + wide halo */
 .ff i{position:absolute;display:block;border-radius:50%;
   background:radial-gradient(circle,#fffdf2 0%,#ffe08a 45%,rgba(255,176,52,0) 74%);
   box-shadow:0 0 6px 2px rgba(255,224,138,.95),0 0 16px 6px rgba(255,190,80,.6),
@@ -54,10 +57,6 @@
   background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.12),rgba(255,255,255,.04) 34%,transparent 60%);
   animation:auraPulse 9s ease-in-out infinite}
 @keyframes auraPulse{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:.9;transform:translate(-50%,-50%) scale(1.12)}}
-.shimmer{position:absolute;inset:-40%;
-  background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.16) 50%,transparent 58%);
-  animation:sweep 8.5s ease-in-out infinite}
-@keyframes sweep{0%{transform:translateX(-70%)}55%,100%{transform:translateX(70%)}}
 .particles{position:absolute;inset:0}
 .particles i{position:absolute;bottom:-12px;border-radius:50%;background:#fff;
   box-shadow:0 0 6px rgba(255,255,255,.8);opacity:0;animation:rise linear infinite}
@@ -66,14 +65,21 @@
   12%{opacity:.9}
   70%{opacity:.7}
   100%{transform:translateY(-102vh) scale(1);opacity:0}}
-@media(prefers-reduced-motion:reduce){.aura,.shimmer,.particles i{animation:none}.shimmer{opacity:0}}
+@media(prefers-reduced-motion:reduce){.aura,.particles i{animation:none}}
+/* centred to suit the artwork: bamboo left, blossoms right, open sky down the middle */
 .cover-inner{position:relative;z-index:3;flex:1;display:flex;flex-direction:column;
-  align-items:flex-end;justify-content:space-between;padding:58px 34px 54px;text-align:right}
+  align-items:center;justify-content:space-between;padding:58px 34px 54px;text-align:center;
+  /* page 1 -> page 2: slides in once the envelope has gone */
+  opacity:0;transform:translateY(30px);
+  transition:opacity .9s ease .35s,transform .9s cubic-bezier(.2,.7,.2,1) .35s}
+.cover.revealed .cover-inner{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .cover-inner{transition:none;opacity:1;transform:none}}
 .eyebrow{font-size:13px;letter-spacing:.42em;text-transform:uppercase;color:#fff;font-weight:400}
 .cover-names{font-family:'Great Vibes',cursive;color:#ffffff;
-  font-size:84px;line-height:.9;margin:10px 0;text-shadow:0 1px 14px rgba(0,0,0,.55);text-align:right}
+  font-size:84px;line-height:.9;margin:10px 0;text-shadow:0 1px 14px rgba(0,0,0,.55);text-align:center}
 .cover-amp{display:block;font-size:40px;color:#ffffff;margin:2px 0;font-family:'Great Vibes',cursive}
-.cover-bottom{display:flex;flex-direction:column;align-items:flex-end;gap:20px;width:100%}
+.cover-bottom{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
 /* the veil is gone, so the lower text can land on the bride's white gown:
    carry the contrast on the glyphs instead of dimming the artwork */
 .cover-date,.to-line,.guest,.scroll-cue span{
@@ -83,7 +89,7 @@
 .to-line{font-size:13px;letter-spacing:.22em;color:var(--ivory-dim);text-transform:uppercase}
 .guest{font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;
   border-bottom:1px solid var(--hair);padding-bottom:4px;display:inline-block}
-.scroll-cue{margin-top:6px;display:flex;flex-direction:column;align-items:flex-end;gap:6px;color:#fff}
+.scroll-cue{margin-top:6px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#fff}
 .scroll-cue span{font-size:11px;letter-spacing:.28em;text-transform:uppercase;opacity:.85}
 .scroll-cue svg{width:20px;height:20px;animation:cueBounce 1.8s ease-in-out infinite}
 @keyframes cueBounce{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(7px);opacity:1}}

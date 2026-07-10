@@ -12,12 +12,13 @@ html,body{background:#000;color:var(--ivory);font-family:'Cormorant Garamond',se
 body{overflow-x:hidden}
 img{display:block;max-width:100%}
 
-.stage{max-width:480px;margin:0 auto;position:relative;background:var(--ink);min-height:100vh;overflow:hidden}
+/* no overflow:hidden here — it would kill the cover's position:sticky.
+   body already clips horizontally (overflow-x:hidden). */
+.stage{max-width:480px;margin:0 auto;position:relative;background:var(--ink);min-height:100vh}
 .stage::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
   box-shadow:inset 0 0 120px 20px rgba(0,0,0,.6);max-width:480px;margin:0 auto;left:0;right:0}
 
 .orn{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--accent-soft)}
-.orn.right{justify-content:flex-end}
 .orn .rule{height:1px;width:46px;background:linear-gradient(90deg,transparent,var(--hair))}
 .orn .rule.r{background:linear-gradient(90deg,var(--hair),transparent)}
 .orn .dot{font-size:10px;letter-spacing:.3em}

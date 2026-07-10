@@ -37,11 +37,13 @@ export default function App() {
 
       <EnvelopeScreen onOpenStart={play} onOpened={() => setOpened(true)} />
 
-      <CoverPage />
+      <CoverPage opened={opened} />
 
-      <CosmicBackground />
-
+      {/* the cosmic backdrop lives INSIDE the content layer so page 3 is opaque
+          and slides up over the sticky cover (page 2 -> 3) */}
       <main id="content">
+        <CosmicBackground />
+
         <GreetingSection />
         <CoupleSection />
         <StorySection />

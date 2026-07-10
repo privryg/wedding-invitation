@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
 
 /**
- * Fireflies orbiting the couple, drifting from the groom's hair down to the
- * hem of the gown.
+ * Fireflies drifting down through the cover artwork's night sky, each looping
+ * around its own descent so they read as circling rather than falling.
  *
  * The wrapper reproduces the exact box that `background-size:cover` gives
  * .cover-photo (same aspect ratio, min 100% on both axes), so every percentage
@@ -15,7 +15,7 @@ export default function Fireflies() {
   const flies = useMemo(
     () =>
       Array.from({ length: COUNT }, () => ({
-        left: 24 + Math.random() * 18, // % — the couple's vertical axis is ~33%
+        left: 26 + Math.random() * 46, // % — spread across the open sky, clear of the border
         radius: 4 + Math.random() * 7, // cqw — orbit radius, 1cqw = 1% of artwork width
         fall: 9 + Math.random() * 7, // s  — hair -> hem
         orbit: 4 + Math.random() * 4, // s  — one loop around

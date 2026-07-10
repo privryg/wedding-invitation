@@ -59,36 +59,50 @@ export const greeting = {
   ayatSource: '— QS. Ar-Rum : 21 —',
 }
 
+export const storyIntro =
+  'Every love story is beautiful, but ours is my favorite.'
+
+export const storyClosing =
+  'Dan kini, kami siap untuk menulis babak baru dalam cinta kami selamanya.'
+
+/** Transcribed from the Love Story artwork so the copy stays readable and editable. */
 export const story = [
   {
-    year: 'Awal Bertemu',
-    head: 'Takdir Mempertemukan',
-    text: 'Berawal dari sebuah pertemuan sederhana yang menumbuhkan rasa dan kenyamanan satu sama lain.',
+    step: '01',
+    head: 'Awal Bertemu',
+    text: 'Sebuah pertemuan sederhana di sebuah cafe. Kita berpapasan tanpa sengaja, namun ada rasa yang membuat kita saling memperhatikan.',
+    illustration: '/assets/story-1.png',
   },
   {
-    year: 'Menjalin Kasih',
-    head: 'Saling Melengkapi',
-    text: 'Seiring waktu, kami tumbuh bersama, saling mendukung, dan meyakini bahwa kami diciptakan untuk berjalan berdampingan.',
+    step: '02',
+    head: 'Tertarik & Berkenalan',
+    text: 'Rasa penasaran berubah menjadi ketertarikan. Kami memberanikan diri untuk berkenalan, memulai percakapan kecil yang terasa begitu hangat.',
+    illustration: '/assets/story-2.png',
   },
   {
-    year: 'Lamaran',
-    head: 'Sebuah Janji',
-    text: 'Dengan restu kedua keluarga, kami mengikat janji untuk melangkah ke jenjang yang lebih serius.',
+    step: '03',
+    head: 'Bertukar Sosial Media',
+    text: 'Percakapan berlanjut, dan kami bertukar sosial media untuk tetap terhubung. Dari sana, kisah kami mulai tumbuh.',
+    illustration: '/assets/story-3.png',
   },
   {
-    year: '08 Agustus 2026',
-    head: 'Menuju Halal',
-    text: 'Kini kami siap menyatukan dua hati dalam ikatan suci pernikahan. Doakan kami, ya.',
+    step: '04',
+    head: 'Perjalanan Bersama',
+    text: 'Dari pertemuan tak terduga, menjadi pilihan hati yang tak terpisahkan. Terima kasih Tuhan, kami dipertemukan untuk saling melengkapi.',
+    illustration: '/assets/story-4.png',
   },
 ]
+
 
 export const gallery = [
   '/assets/gallery-1.jpg',
   '/assets/gallery-2.jpg',
   '/assets/gallery-4.jpg',
   '/assets/gallery-5.jpg',
-  '/assets/gallery-6.jpg',
   '/assets/gallery-7.jpg',
+  '/assets/gallery-6.jpg',
+  '/assets/gallery-9.jpg',
+  '/assets/gallery-8.jpg',
 ]
 
 export const gifts = [

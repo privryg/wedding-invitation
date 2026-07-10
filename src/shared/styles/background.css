@@ -1,5 +1,9 @@
-/* ---- cosmic background (content pages) ---- */
-.bg-motif{position:fixed;inset:0;max-width:480px;margin:0 auto;left:0;right:0;z-index:0;pointer-events:none;overflow:hidden;
+/* ---- cosmic background (content pages) ----
+   sticky (not fixed) so it belongs to #content: that makes the content layer
+   opaque and lets it slide up over the sticky cover. The negative bottom margin
+   keeps it from adding page height. */
+.bg-motif{position:sticky;top:0;height:100vh;max-width:480px;margin:0 auto -100vh;
+  z-index:0;pointer-events:none;overflow:hidden;
   background:radial-gradient(ellipse at 50% 12%,#0d1730 0%,#070b18 45%,#030409 100%)}
 .nebula{position:absolute;border-radius:50%;filter:blur(30px);opacity:.4;animation:drift 26s ease-in-out infinite}
 .nebula.a{width:70%;height:34%;left:8%;top:14%;background:radial-gradient(circle,rgba(90,120,190,.5),transparent 65%)}
@@ -55,5 +59,6 @@
 .shoot.go{animation:shoot 1.2s ease-in forwards}
 @keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(45deg)}
   10%{opacity:1}100%{opacity:0;transform:translate(52vw,70vh) rotate(45deg)}}
-#content{position:relative;z-index:1}
+/* above .cover (z-index 1) so it slides over it */
+#content{position:relative;z-index:2}
 @media(prefers-reduced-motion:reduce){.nebula,.stars i,.planet,.satellite,.shoot,.planet::after{animation:none}}

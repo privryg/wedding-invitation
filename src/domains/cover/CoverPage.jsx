@@ -3,22 +3,22 @@ import { coverParticles } from '../../shared/utils/fields.js'
 import { couple, event } from '../../config/invitation.config.js'
 import { useGuestName } from '../guest/useGuestName.js'
 import Fireflies from './Fireflies.jsx'
+import Birds from './Birds.jsx'
 import './cover.css'
 
-/** The full-screen cover: photo, couple names, date, and the addressed guest. */
-export default function CoverPage() {
+/** The full-screen cover: artwork, couple names, date, and the addressed guest.
+ *  `opened` slides its contents in once the envelope has been torn away. */
+export default function CoverPage({ opened = false }) {
   const particles = useMemo(() => coverParticles(26, false), [])
   const guestName = useGuestName()
 
   return (
-    <div className="cover">
+    <div className={`cover${opened ? ' revealed' : ''}`}>
       <div className="cover-photo" />
-      {/* additive bloom for the neon signs; same sizing as the photo so it always registers */}
-      <div className="cover-neon" aria-hidden="true" />
+      <Birds />
       <Fireflies />
       <div className="motif">
         <div className="aura" />
-        <div className="shimmer" />
         <div className="particles">
           {particles.map((style, i) => (
             <i key={i} style={style} />
@@ -36,7 +36,7 @@ export default function CoverPage() {
         </div>
         <div className="cover-bottom">
           <div className="cover-date">{event.dayLabel}</div>
-          <div className="orn right">
+          <div className="orn">
             <span className="rule" />
             <span className="dot">&#10022;</span>
             <span className="rule r" />

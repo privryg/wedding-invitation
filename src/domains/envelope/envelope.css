@@ -1,8 +1,9 @@
 /* ---- ENVELOPE (page 1) ---- */
 .env-screen{position:fixed;inset:0;max-width:480px;margin:0 auto;z-index:150;background:radial-gradient(ellipse at 50% 34%,#101a33 0%,#070b18 48%,#020308 100%);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;
-  transition:opacity 1s ease,transform 1s ease}
-.env-screen.gone{opacity:0;transform:scale(1.15);pointer-events:none}
+  transition:opacity 1s ease,transform 1s cubic-bezier(.65,0,.35,1)}
+/* page 1 -> page 2: the envelope screen slides up and out */
+.env-screen.gone{opacity:0;transform:translateY(-100%);pointer-events:none}
 .galaxy{position:absolute;inset:0;overflow:hidden;z-index:0}
 .gx-swirl{position:absolute;left:50%;top:40%;width:200%;height:200%;transform:translate(-50%,-50%);border-radius:50%;
   background:
@@ -54,10 +55,13 @@
 .env-letter{position:absolute;left:14px;right:14px;top:16px;bottom:16px;background:linear-gradient(180deg,#fffef9,#f6f0e6);
   border-radius:3px;z-index:2;box-shadow:0 6px 16px rgba(0,0,0,.16);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-  transition:transform 1s cubic-bezier(.6,0,.2,1) .55s;transform:translateY(0)}
+  transition:transform 1s cubic-bezier(.6,0,.2,1) .55s,opacity .55s ease 1.05s;transform:translateY(0)}
 .env-letter .mono{font-family:'Great Vibes',cursive;font-size:42px;color:#3a3a3a;line-height:1}
 .env-letter .sub{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#9a8f7d}
-.env-screen.opening .env-letter{transform:translateY(-124px)}
+/* The letter starts at y339 and the headline ends at y285. A -50px rise lands at
+   y286 — one pixel of clearance. -40px keeps a real margin, and the letter still
+   lifts clear of the envelope before fading out. */
+.env-screen.opening .env-letter{transform:translateY(-40px);opacity:0}
 .env-flap{position:absolute;left:0;top:0;width:300px;height:120px;background:linear-gradient(150deg,#fdf6e3 0%,#e9d290 45%,#c9a94f 100%);
   clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;
   transition:transform .85s ease;z-index:5;backface-visibility:hidden;
