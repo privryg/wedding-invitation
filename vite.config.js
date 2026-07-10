@@ -15,6 +15,10 @@ import react from '@vitejs/plugin-react'
  */
 export default defineConfig({
   root: 'src',
+  // `envDir` defaults to `root`. Without this Vite looks for `src/.env`, the
+  // VITE_SUPABASE_* vars resolve to undefined, and createClient() throws on
+  // import — a blank page that builds and deploys perfectly cleanly.
+  envDir: '..',
   publicDir: '../public',
   plugins: [react()],
   build: {
