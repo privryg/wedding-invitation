@@ -6,7 +6,6 @@ import EnvelopeScreen from './domains/envelope/EnvelopeScreen.jsx'
 import CoverPage from './domains/cover/CoverPage.jsx'
 import GreetingSection from './domains/greeting/GreetingSection.jsx'
 import CoupleSection from './domains/couple/CoupleSection.jsx'
-import StorySection from './domains/story/StorySection.jsx'
 import CountdownSection from './domains/countdown/CountdownSection.jsx'
 import GallerySection from './domains/gallery/GallerySection.jsx'
 import EventSection from './domains/event/EventSection.jsx'
@@ -46,7 +45,6 @@ export default function App() {
 
         <GreetingSection />
         <CoupleSection />
-        <StorySection />
         <CountdownSection />
         <GallerySection />
         <EventSection />

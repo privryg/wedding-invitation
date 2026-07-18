@@ -17,7 +17,7 @@ export default function useBacksound() {
     const song = audioRef.current
     if (!song) return
     try {
-      song.volume = 0.7
+      song.volume = 0.3
     } catch {
       /* ignore */
     }

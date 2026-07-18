@@ -25,12 +25,16 @@ img{display:block;max-width:100%}
 
 section{position:relative;padding:78px 32px;text-align:center}
 .kicker{font-size:13px;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
-.salam{font-family:'Great Vibes',cursive;text-transform:none;font-size:34px;line-height:1.15;color:#fff;margin-bottom:14px}
+.salam{font-family:'Cormorant Garamond',serif;text-transform:none;font-size:15px;line-height:1.7;color:#fff;margin-bottom:14px}
 .serif-lg{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:34px;line-height:1.5;color:#fff}
 .body-cop{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:17px;line-height:1.8;
   color:var(--ivory-dim);max-width:340px;margin:20px auto 0}
 .ayat{font-style:italic;color:#fff;font-size:19px;margin-top:22px;font-family:'Cormorant Garamond',serif;opacity:.92}
 .note-track{font-size:10px;letter-spacing:.24em;color:var(--accent-soft);text-transform:uppercase;margin-top:14px}
+/* Greeting block (memohon… → QS Ar-Rum): smaller, airier, more refined */
+.greeting .body-cop{font-size:14px;line-height:1.9;letter-spacing:.02em;max-width:300px}
+.greeting .ayat{font-size:15px;line-height:1.85;letter-spacing:.01em;max-width:320px;margin:26px auto 0;opacity:.85}
+.greeting .note-track{font-size:9px;letter-spacing:.3em;margin-top:18px;opacity:.9}
 
 .closing{padding-bottom:40px}
 .sign{font-family:'Great Vibes',cursive;font-size:52px;color:#fff;margin-top:12px}

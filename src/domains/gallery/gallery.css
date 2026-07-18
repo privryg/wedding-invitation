@@ -4,12 +4,12 @@
    with 8 photos the final row holds 2 tiles and would otherwise hug the left. */
 .gal-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;
   max-width:360px;margin:26px auto 0}
-.gal-item{flex:0 0 calc((100% - 20px) / 3)}
+.gal-item{flex:0 0 calc((100% - 10px) / 2)}
 /* no hard border: a faint inset ring keeps the edge from reading as a pasted-on tile */
 .gal-item{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:10px;background:#080b16;
   box-shadow:inset 0 0 0 1px rgba(235,233,228,.07)}
 .gal-item .ph{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;
-  filter:brightness(.36) contrast(1.06) saturate(.88);
+  filter:brightness(.66) contrast(1.02) saturate(.92);
   transition:filter .5s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
 /* vignette + bottom fade dissolve each photo into the cosmic background */
 .gal-item::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;border-radius:inherit;
@@ -28,7 +28,7 @@
 .gal-item:nth-child(7)::before{animation-delay:-5s}
 .gal-item:nth-child(8)::before{animation-delay:-5.83s}
 .gal-item:nth-child(9)::before{animation-delay:-6.67s}
-.gal-item:hover .ph{filter:brightness(.52) contrast(1.06) saturate(.94);transform:scale(1.04)}
+.gal-item:hover .ph{filter:brightness(.82) contrast(1.02) saturate(.96);transform:scale(1.04)}
 @media(prefers-reduced-motion:reduce){
   .gal-item .ph{transition:none}
   .gal-item:hover .ph{transform:none}

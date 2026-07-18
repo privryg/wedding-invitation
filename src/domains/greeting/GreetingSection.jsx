@@ -5,7 +5,7 @@ import { greeting } from '../../config/invitation.config.js'
 /** Opening greeting: salam, intention, and the Ar-Rum : 21 verse. */
 export default function GreetingSection() {
   return (
-    <section>
+    <section className="greeting">
       <Reveal>
         <OrnDivider />
         <div className="salam">{greeting.salam}</div>
